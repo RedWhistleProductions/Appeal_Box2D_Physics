@@ -1,0 +1,22 @@
+{
+    "schema_version":  1,
+    "name":  "Appeal_Box2D_Physics",
+    "version":  "1.0.0-beta.1",
+    "module":  "Physics",
+    "platforms":  [
+                      "windows-x64",
+                      "linux-x64"
+                  ],
+    "artifacts":  {
+                      "windows":  "Appeal_Box2D_Physics.dll",
+                      "linux":  "Appeal_Box2D_Physics.so"
+                  },
+    "runtime_dependencies":  {
+                                 "windows":  [
+
+                                             ],
+                                 "linux_debian":  [
+
+                                                  ]
+                             }
+}
