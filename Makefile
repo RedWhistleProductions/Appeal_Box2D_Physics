@@ -16,16 +16,19 @@ else
   CXXFLAGS += -fPIC
 endif
 
+CPPFLAGS += -I.deps/box2d/source/include
+LDLIBS += .deps/box2d/lib/$(PLATFORM)/libbox2d.a
+
 OBJ_DIR := $(OBJ_ROOT)/$(PLATFORM)
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
 OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS)
-	$(CXX) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+$(TARGET): $(OBJS) .deps/box2d/lib/$(PLATFORM)/libbox2d.a
+	$(CXX) $(LDFLAGS) -o $@ $(OBJS) $(LDLIBS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(wildcard src/*.h)
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
